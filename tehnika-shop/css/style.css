@@ -1,0 +1,213 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #eee;
+  color: #222;
+  line-height: 1.5;
+}
+
+/* сетка всей страницы */
+.page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* шапка сайта */
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 15px;
+  background: #333;
+  color: #fff;
+  padding: 10px 15px;
+}
+
+.header h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
+
+/* блок с фильтрами */
+.sidebar {
+  grid-area: sidebar;
+  background: #fff;
+  padding: 15px;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.sidebar h3 {
+  font-size: 14px;
+  margin: 15px 0 5px;
+}
+
+.sidebar label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.sidebar input {
+  margin-right: 5px;
+}
+
+/* каталог */
+.main {
+  grid-area: main;
+}
+
+.main h2 {
+  margin: 0 0 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #333;
+}
+
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+}
+
+/* карточка товара дня шире остальных */
+.card-featured {
+  grid-column: span 2;
+}
+
+/* картинка, когда её добавим */
+.card img {
+  display: block;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 2px 8px;
+  border: 1px solid #333;
+  font-size: 13px;
+}
+
+.card h3 {
+  font-size: 17px;
+  margin: 0 0 5px;
+}
+
+.desc {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 10px;
+}
+
+/* цена и кнопка в одну строку (flex можно внутри карточки) */
+.card-buy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.price {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.price s {
+  font-size: 13px;
+  font-weight: normal;
+  color: #777;
+}
+
+button {
+  padding: 7px 12px;
+  border: 1px solid #333;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* подвал по центру */
+.footer {
+  grid-area: footer;
+  display: grid;
+  place-items: center;
+  background: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* мобильная версия: одна колонка, фильтры под каталогом */
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .menu {
+    grid-auto-flow: row;
+    gap: 5px;
+  }
+
+  .card-featured {
+    grid-column: auto;
+  }
+}
